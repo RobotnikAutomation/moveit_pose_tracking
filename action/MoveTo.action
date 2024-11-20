@@ -1,0 +1,19 @@
+# An action to perform servoing relative to a given frame 
+
+# Relative pose of desired frame
+geometry_msgs/PoseStamped pose
+
+---
+
+# If servoing to was succesful
+bool result
+
+# Some informational message
+string message
+
+---
+
+# The internal state of action
+string state
+geometry_msgs/Pose remaining
+

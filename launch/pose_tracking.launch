@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<launch>
+  <!-- Launch an example that sends commands via C++ API. -->
+
+  <arg name="sim" default="true" />
+
+  <group if="$(arg sim)">
+    <node name="pose_tracking_node" pkg="moveit_pose_tracking" type="pose_tracking_node" output="screen" >
+      <!-- <param name="parameter_ns" type="string" value="servo_server" /> -->
+      <rosparam command="load" file="$(find moveit_pose_tracking)/config/robot_config_sim.yaml" />
+      <rosparam command="load" file="$(find moveit_pose_tracking)/config/pose_tracking_settings.yaml" />
+    </node>
+  </group> 
+
+  <group unless="$(arg sim)">
+    <node name="pose_tracking_node" pkg="moveit_pose_tracking" type="pose_tracking_node" output="screen" launch-prefix="nice -n -15" >
+      <!-- <param name="parameter_ns" type="string" value="servo_server" /> -->
+      <rosparam command="load" file="$(find moveit_pose_tracking)/config/robot_config.yaml" />
+      <rosparam command="load" file="$(find moveit_pose_tracking)/config/icf_pose_tracking_settings.yaml" />
+    </node>
+  </group> 
+
+</launch>

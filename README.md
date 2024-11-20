@@ -1,2 +1,4 @@
 # moveit_servo
-ros action wrapper for moveit servo functionality
+
+Ros action wrapper for moveit servo functionality
+
